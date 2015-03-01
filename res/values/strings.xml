@@ -4,5 +4,12 @@
     <string name="app_name">AccessTracker</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="buttonIn">Entrada</string>
+    <string name="buttonOut">Salida</string>
+    <string name="edit_message">Introduce el mensaje</string>
+    <string name="button_send">Envía</string>
+    <string name="registration_tag">Placa/Matrícula</string>
+    <string name="driver_name_field">Nombre del Chófer</string>
+    <string name="confirm_enter">Confirma la entrada</string>
 
 </resources>

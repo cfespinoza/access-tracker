@@ -3,46 +3,37 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#0099cc"
+    android:id="@+id/fullscreen_content"
     tools:context="com.caflores.access_tracker.TrackerActivity" >
 
-    <!--
-         The primary full-screen view. This can be replaced with whatever view
-         is needed to present your content, e.g. VideoView, SurfaceView,
-         TextureView, etc.
-    -->
-
-    <!--
-         This FrameLayout insets its children based on system windows using
-         android:fitsSystemWindows.
-    -->
-
-    <RelativeLayout
+    <LinearLayout
+        android:id="@+id/fullscreen_content_controls"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="match_parent"
+        android:orientation="vertical" 
+	    android:paddingLeft="16dp"
+	    android:paddingRight="16dp" 
+	    android:paddingTop="16dp"
+	    android:paddingBottom="16dp">
 
         <Button
-            android:id="@+id/button1"
-            style="@id/button1"
-            android:layout_width="wrap_content"
+            android:id="@+id/buttonIn"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="109dp"
-            android:fontFamily="Arial"
-            android:text="Entrada"
-            android:typeface="monospace" />
+            android:text="@string/buttonIn"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:onClick="goingIn"/>
 
         <Button
-            android:id="@+id/button2"
-            android:layout_width="wrap_content"
+            android:id="@+id/buttonOut"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/button1"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="74dp"
-            android:fontFamily="Arial"
-            android:text="Salida"
-            android:typeface="monospace" />
+            android:text="@string/buttonOut"
+            android:layout_weight="1"
+            android:layout_gravity="center" 
+            android:onClick="goingOut"/>
 
-    </RelativeLayout>
+    </LinearLayout>
 
 </FrameLayout>
