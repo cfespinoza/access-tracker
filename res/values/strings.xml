@@ -11,5 +11,8 @@
     <string name="registration_tag">Placa/Matrícula</string>
     <string name="driver_name_field">Nombre del Chófer</string>
     <string name="confirm_enter">Confirma la entrada</string>
+    <string name="buttonBeginTurn">Comenzar</string>
+    <string name="buttonFinishTurn">Terminar</string>    
+    
 
 </resources>

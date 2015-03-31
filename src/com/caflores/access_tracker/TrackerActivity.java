@@ -1,9 +1,12 @@
 package com.caflores.access_tracker;
 
+import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.Activity;
@@ -14,7 +17,6 @@ import android.os.Bundle;
 import android.speech.RecognizerIntent;
 import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 
 public class TrackerActivity extends Activity {
@@ -32,6 +34,8 @@ public class TrackerActivity extends Activity {
 		setContentView(R.layout.activity_tracker);
 		Button goingInButton = (Button) findViewById(R.id.buttonIn);
 		Button goingOutButton = (Button) findViewById(R.id.buttonOut);
+		this.setEnabledButtons(false);
+		this.setEnabledTurnsButtons(true, false);
 
 		PackageManager pm = getPackageManager();
         List<ResolveInfo> activities = pm.queryIntentActivities(
@@ -84,8 +88,24 @@ public class TrackerActivity extends Activity {
     public void goingIn(View view){
     	Log.d(TAG, "This is goingIn method");
     	this.isEntrance = true;
-    	startVoiceRecognitionActivity("entrada");
-    	
+    	startVoiceRecognitionActivity("entrada");	
+    }
+    
+    private void beginTurn(View view){
+    	this.setEnabledTurnsButtons(false, true);
+    	this.setEnabledButtons(true);
+    	String currentDateTimeString = DateFormat.getDateTimeInstance().format(new Date());
+		try {
+			register.put("date", currentDateTimeString);
+			JSONArray incomingArray = new JSONArray();
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    }
+    
+    private void finishTurn(View view){
+    	Log.d(TAG, "This is finishTurn method: "+ register.toString());
     }
     
     private void startVoiceRecognitionActivity(String msg){
@@ -101,7 +121,6 @@ public class TrackerActivity extends Activity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data){
         if (requestCode == REQUEST_CODE && resultCode == RESULT_OK){
-            // Populate the wordsList with the String values the recognition engine thought it heard
             ArrayList<String> matches = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
             if(this.isEntrance){
             	this.setIncomingItem(matches.get(0));
@@ -109,11 +128,6 @@ public class TrackerActivity extends Activity {
             else{
             	this.setOutgoingItem(matches.get(0));
             }
-            /*
-            wordsList.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,
-                    matches));
-            */
-            
         }
         super.onActivityResult(requestCode, resultCode, data);
     }
@@ -123,9 +137,27 @@ public class TrackerActivity extends Activity {
      */
     private void setIncomingItem(String recognizedString){
     	Log.d(TAG, "This is setIncomingItem method: "+recognizedString);
+    	System.out.println("This is setIncomingItem method: "+recognizedString);
     }
 
     private void setOutgoingItem(String recognizedString){
     	Log.d(TAG, "This is setOutgoingItem method: "+recognizedString);
+    	System.out.println("This is setOutgoingItem method: "+recognizedString);
+    }
+    
+    private void setEnabledButtons(Boolean enabled){
+    	Button goingInButton = (Button) findViewById(R.id.buttonIn);
+		Button goingOutButton = (Button) findViewById(R.id.buttonOut);
+		
+		goingInButton.setEnabled(enabled);
+		goingOutButton.setEnabled(enabled);
+    }
+    
+    private void setEnabledTurnsButtons(Boolean enabledBegin, Boolean enabledFinish){
+		Button beginTurn = (Button)	findViewById(R.id.buttonStart);
+		Button finishTurn = (Button) findViewById(R.id.buttonFinish);
+		
+		beginTurn.setEnabled(enabledBegin);
+		finishTurn.setEnabled(enabledFinish);
     }
 }

@@ -21,7 +21,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/buttonIn"
-            android:layout_weight="1"
+            android:layout_weight="10"
             android:layout_gravity="center"
             android:onClick="goingIn"/>
 
@@ -29,10 +29,27 @@
             android:id="@+id/buttonOut"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/buttonOut"
+            android:layout_weight="10"
+            android:onClick="goingOut"
+            android:text="@string/buttonOut" />
+        
+        <Button
+            android:id="@+id/buttonStart"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/buttonBeginTurn"
             android:layout_weight="1"
             android:layout_gravity="center" 
-            android:onClick="goingOut"/>
+            android:onClick="beginTurn"/>
+       	
+        <Button
+            android:id="@+id/buttonFinish"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/buttonFinishTurn"
+            android:layout_weight="1"
+            android:layout_gravity="center" 
+            android:onClick="finishTurn"/>
 
     </LinearLayout>
 

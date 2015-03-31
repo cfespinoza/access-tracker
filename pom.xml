@@ -10,8 +10,10 @@
 	<properties>
 		<!-- use UTF-8 for everything -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<project.reporting.outputEncoding>UTF-8
+		</project.reporting.outputEncoding>
 		<json.version>20090211</json.version>
+		<jxls.version>1.0.6</jxls.version>
 	</properties>
 
 	<dependencies>
@@ -22,11 +24,6 @@
 			<scope>provided</scope>
 		</dependency>
 
-		<dependency>
-			<groupId>org.json</groupId>
-			<artifactId>json</artifactId>
-			<version>${json.version}</version>
-		</dependency>
 	</dependencies>
 
 	<build>
