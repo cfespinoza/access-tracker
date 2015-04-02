@@ -7,11 +7,13 @@
 
 # Java class files
 *.class
-
+R.java
 # Generated files
-bin/
-gen/
-target/
+bin/*
+bin/classes/com/caflores/access_tracker/*.class
+gen/*
+gen/R.java
+target/*
 
 # Gradle files
 .gradle/
