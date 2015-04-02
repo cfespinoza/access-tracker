@@ -1,5 +1,7 @@
 package com.caflores.access_tracker;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -10,10 +12,12 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.os.Bundle;
+import android.os.Environment;
 import android.speech.RecognizerIntent;
 import android.util.Log;
 import android.view.View;
@@ -22,11 +26,11 @@ import android.widget.Button;
 public class TrackerActivity extends Activity {
 
 	private static final String TAG = "TrackerActivity";
+	private static final String FILE_NAME = "prueba.txt";
     private static final int REQUEST_CODE = 1234;
 	
     private boolean isEntrance = false;
     private JSONObject register = new JSONObject();
-    
     
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +38,24 @@ public class TrackerActivity extends Activity {
 		setContentView(R.layout.activity_tracker);
 		Button goingInButton = (Button) findViewById(R.id.buttonIn);
 		Button goingOutButton = (Button) findViewById(R.id.buttonOut);
+		Button beginTurn = (Button)	findViewById(R.id.buttonStart);
+		beginTurn.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				beginTurn(v);
+			}
+		});
+		Button finishTurn = (Button) findViewById(R.id.buttonFinish);
+		finishTurn.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				finishTurn(v);
+			}
+		});
 		this.setEnabledButtons(false);
 		this.setEnabledTurnsButtons(true, false);
 
@@ -92,12 +114,16 @@ public class TrackerActivity extends Activity {
     }
     
     private void beginTurn(View view){
+    	Log.d(TAG, "This is beginTurn method");
     	this.setEnabledTurnsButtons(false, true);
     	this.setEnabledButtons(true);
     	String currentDateTimeString = DateFormat.getDateTimeInstance().format(new Date());
 		try {
 			register.put("date", currentDateTimeString);
-			JSONArray incomingArray = new JSONArray();
+			JSONArray dataCollection = new JSONArray();
+			JSONObject indexes = new JSONObject();
+			register.put("indexes", indexes);
+			register.put("data", dataCollection);
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -105,7 +131,26 @@ public class TrackerActivity extends Activity {
     }
     
     private void finishTurn(View view){
+    	this.setEnabledTurnsButtons(true, false);
+    	this.setEnabledButtons(false);
+    	FileOutputStream outputStream;
+    	File auxFile = getExternalFilesDir("/storage/emulated/0/Reportes/"+FILE_NAME);
+    	
+    	File file = new File(getExternalFilesDir(null), FILE_NAME);
     	Log.d(TAG, "This is finishTurn method: "+ register.toString());
+    	Log.d(TAG, "This is auxFile absoltePath: "+ auxFile.getAbsolutePath());
+    	Log.d(TAG, "This is auxFile path: "+ auxFile.getPath());
+
+    	Log.d(TAG, "This is file absoltePath: "+ file.getAbsolutePath());
+    	Log.d(TAG, "This is file path: "+ file.getPath());
+    	try {
+			// outputStream = openFileOutput(FILE_NAME, Context.MODE_PRIVATE);
+			outputStream = new FileOutputStream(file);
+    		outputStream.write(register.toString().getBytes());
+			outputStream.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
     }
     
     private void startVoiceRecognitionActivity(String msg){

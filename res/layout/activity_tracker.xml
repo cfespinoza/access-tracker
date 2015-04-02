@@ -23,6 +23,7 @@
             android:text="@string/buttonIn"
             android:layout_weight="10"
             android:layout_gravity="center"
+            android:clickable="true"
             android:onClick="goingIn"/>
 
         <Button
@@ -31,6 +32,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="10"
             android:onClick="goingOut"
+            android:layout_gravity="center"
+            android:clickable="true"
             android:text="@string/buttonOut" />
         
         <Button
@@ -40,6 +43,7 @@
             android:text="@string/buttonBeginTurn"
             android:layout_weight="1"
             android:layout_gravity="center" 
+            android:clickable="true"
             android:onClick="beginTurn"/>
        	
         <Button
@@ -48,7 +52,8 @@
             android:layout_height="wrap_content"
             android:text="@string/buttonFinishTurn"
             android:layout_weight="1"
-            android:layout_gravity="center" 
+            android:layout_gravity="center"
+            android:clickable="true"
             android:onClick="finishTurn"/>
 
     </LinearLayout>

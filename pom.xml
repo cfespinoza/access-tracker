@@ -13,7 +13,7 @@
 		<project.reporting.outputEncoding>UTF-8
 		</project.reporting.outputEncoding>
 		<json.version>20090211</json.version>
-		<jxls.version>1.0.6</jxls.version>
+		<jxl.version>2.6.12</jxl.version>
 	</properties>
 
 	<dependencies>
@@ -22,6 +22,18 @@
 			<artifactId>android</artifactId>
 			<version>4.1.1.4</version>
 			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.json</groupId>
+			<artifactId>json</artifactId>
+			<version>${json.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>net.sourceforge.jexcelapi</groupId>
+			<artifactId>jxl</artifactId>
+			<version>${jxl.version}</version>
 		</dependency>
 
 	</dependencies>
