@@ -46,21 +46,13 @@
 				<version>3.9.0-rc.2</version>
 				<configuration>
 					<sdk>
-						<platform>19</platform>
-						<path>/home/caflores/dev-tools/android-sdk/</path>
+						<platform>22</platform>
+						<path>C:/Users/caflores/android-sdks</path>
 					</sdk>
 					<deleteConflictingFiles>true</deleteConflictingFiles>
 					<undeployBeforeDeploy>true</undeployBeforeDeploy>
 				</configuration>
 				<extensions>true</extensions>
-			</plugin>
-			<plugin>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.1</version>
-				<configuration>
-					<source>1.6</source>
-					<target>1.6</target>
-				</configuration>
 			</plugin>
 		</plugins>
 	</build>

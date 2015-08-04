@@ -1,3 +1,8 @@
+#Eclipse files
+.classpath
+.project
+*.settings
+
 # Built application files
 *.apk
 *.ap_
@@ -10,8 +15,9 @@
 R.java
 # Generated files
 bin/*
-bin/classes/com/caflores/access_tracker/*.class
-gen/*
+bin/classes/com/caflores/access_tracker/*
+bin/classes/com/caflores/access_tracker/util/*
+
 gen/R.java
 target/*
 
@@ -27,3 +33,4 @@ proguard/
 
 # Log Files
 *.log
+/target/
