@@ -23,6 +23,9 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import com.caflores.access_tracker.exporter.ExportService;
+import com.caflores.access_tracker.exporter.Exporter;
+
 public class TrackerActivity extends Activity {
 
 	private static final String TAG = "TrackerActivity";
@@ -31,6 +34,7 @@ public class TrackerActivity extends Activity {
 	
     private boolean isEntrance = false;
     private JSONObject register = new JSONObject();
+    private ExportService exporter = new Exporter();
     
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -133,10 +137,10 @@ public class TrackerActivity extends Activity {
     private void finishTurn(View view){
     	this.setEnabledTurnsButtons(true, false);
     	this.setEnabledButtons(false);
-    	FileOutputStream outputStream;
-    	File auxFile = getExternalFilesDir("/storage/emulated/0/Reportes/"+FILE_NAME);
+//    	FileOutputStream outputStream;
+//    	File auxFile = getExternalFilesDir("/storage/emulated/0/Reportes/"+FILE_NAME);
     	
-    	File file = new File(getExternalFilesDir(null), FILE_NAME);
+//    	File file = new File(getExternalFilesDir(null), FILE_NAME);
     	Log.d(TAG, "This is finishTurn method: "+ register.toString());
     	Log.d(TAG, "This is auxFile absoltePath: "+ auxFile.getAbsolutePath());
     	Log.d(TAG, "This is auxFile path: "+ auxFile.getPath());
@@ -145,9 +149,10 @@ public class TrackerActivity extends Activity {
     	Log.d(TAG, "This is file path: "+ file.getPath());
     	try {
 			// outputStream = openFileOutput(FILE_NAME, Context.MODE_PRIVATE);
-			outputStream = new FileOutputStream(file);
-    		outputStream.write(register.toString().getBytes());
-			outputStream.close();
+//			outputStream = new FileOutputStream(file);
+//    		outputStream.write(register.toString().getBytes());
+//			outputStream.close();
+    		exporter.exportXLS();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
